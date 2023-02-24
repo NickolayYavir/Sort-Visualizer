@@ -37,6 +37,7 @@ class ElementsManager:
     
     def __init__(self, canvas:Canvas):
         self.canvas = canvas
+        self.createElements()
 
     def createElements(self):
         self.canvas.delete("all")
