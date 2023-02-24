@@ -4,16 +4,16 @@ import numpy as np
 
 from config import *
 from element import ElementsManager
-
+from sort import Sort
 
 def shuffle_elements():
     Em.createElements()
 
-
 def start_sorting():
     current_value = sorting_combobox.get()
-    if current_value == "Bubble sort":
-        Em.bubble_sort()
+    if current_value == Sort.BUBBLE_SORT.value: Em.bubble_sort()
+
+
 
 window = Tk()
 window.title("Sorting visualizer")
@@ -27,7 +27,8 @@ sorting_label = Label(ui_frame, text="Choose sorting algorithm:", font=36, bg=CO
 style= ttk.Style()
 style.theme_use('clam')
 style.configure("TCombobox", fieldbackground=COLOR_LIGHT_2, background= COLOR_DARK_2)
-sorting_combobox = ttk.Combobox(ui_frame, values=["Bubble sort"])
+sorting_combobox = ttk.Combobox(ui_frame)
+sorting_combobox['values'] = [e.value for e in Sort]
 sorting_start_button = Button(ui_frame, text="Start", font=40, bg=COLOR_DARK_2, fg=COLOR_LIGHT_2, command=start_sorting)
 output_canvas = Canvas(window, bg='black')
 
