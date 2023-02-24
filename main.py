@@ -41,7 +41,7 @@ style.configure("TCombobox", fieldbackground=COLOR_LIGHT_2, background= COLOR_DA
 sorting_combobox = ttk.Combobox(ui_frame)
 sorting_combobox['values'] = [e.value for e in Sort]
 sorting_start_button = Button(ui_frame, text="Start", font=40, bg=COLOR_DARK_2, fg="White", command=start_sorting)
-element_quantity_scale = Scale(ui_frame, from_=50, to=450, orient=HORIZONTAL)
+element_quantity_scale = Scale(ui_frame, from_=50, to=450, orient=HORIZONTAL, bg=COLOR_DARK_2, fg=COLOR_LIGHT_2)
 
 
 output_canvas = Canvas(window, bg='black')
