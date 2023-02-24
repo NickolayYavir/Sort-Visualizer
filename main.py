@@ -3,10 +3,10 @@ from tkinter import ttk
 import numpy as np
 
 from config import *
-from element import ElementFactory
+from element import ElementsManager
 
 def shuffle_elements():
-    ElementFactory(output_canvas).createElements()
+    ElementsManager(output_canvas).createElements()
 
 
 window = Tk()

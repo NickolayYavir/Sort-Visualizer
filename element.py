@@ -32,7 +32,7 @@ class Element:
         self.canvas.itemconfig(self.id, fill=color)
 
 
-class ElementFactory:
+class ElementsManager:
     
     def __init__(self, canvas):
         self.canvas = canvas
