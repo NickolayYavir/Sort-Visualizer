@@ -1,5 +1,7 @@
 import numpy as np
 from tkinter import Canvas
+import time
+
 
 from config import *
 
@@ -27,6 +29,7 @@ class Element:
     
     def set_value(self, value:int):
         self.value = value
+        
 
     def set_color(self, color:str):
         self.color = color
@@ -60,20 +63,35 @@ class ElementsManager:
 
     def __paint_sorted(self, color):
         for i in range(self.ELEMENT_AMOUT):
-            self.arr[i].set_color("green")
+            self.arr[i].set_color(color)
             self.canvas.update()
-            # time.sleep(0.001)
+
 
     def bubble_sort(self):
         for i in range(self.ELEMENT_AMOUT):
             for j in range(0, self.ELEMENT_AMOUT-i-1):
+                self.arr[j].set_color('red')
                 if self.arr[j+1].get_value() > self.arr[j].get_value():
                     Element.swapElementValue(self.arr[j+1], self.arr[j])
-                self.arr[j+1].set_color("white")
-                self.arr[j].set_color("red")
                 self.canvas.update()
+                time.sleep(0.01)
+                self.arr[j+1].set_color('white')
+                self.arr[j].set_color('white')
         
         self.__paint_sorted("green")
-      
+        
+    def insertion_sort(self):
+            for i in range(1, self.ELEMENT_AMOUT):
+                j = i
+                while j > 0 and self.arr[j-1].get_value() < self.arr[j].get_value():
+                    self.arr[j-1].set_color('red')
+                    Element.swapElementValue(self.arr[j], self.arr[j-1])
+                    self.canvas.update()
+                    time.sleep(0.01)
+                    self.arr[j].set_color('white')
+                    self.arr[j-1].set_color('white')
+                    j -= 1
+
+            self.__paint_sorted("green")
         
         

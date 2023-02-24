@@ -21,6 +21,7 @@ def start_sorting():
         element_shuffle_button["bg"] = COLOR_LIGHT_1
         sorting_start_button["bg"] = COLOR_LIGHT_1
         if current_value == Sort.BUBBLE_SORT.value: Em.bubble_sort()
+        if current_value == Sort.INSERTION_SORT.value: Em.insertion_sort()
         element_quantity_scale['state'] = 'active'
         element_shuffle_button["state"] = "normal"
         element_shuffle_button["bg"] = COLOR_DARK_2
@@ -42,8 +43,6 @@ sorting_combobox = ttk.Combobox(ui_frame)
 sorting_combobox['values'] = [e.value for e in Sort]
 sorting_start_button = Button(ui_frame, text="Start", font=40, bg=COLOR_DARK_2, fg="White", command=start_sorting)
 element_quantity_scale = Scale(ui_frame, from_=50, to=450, orient=HORIZONTAL, bg=COLOR_DARK_2, fg=COLOR_LIGHT_2)
-
-
 output_canvas = Canvas(window, bg='black')
 
 ui_frame.place(relx = 0.05, rely = 0.05,  relwidth=0.9, relheight=0.15)
@@ -52,10 +51,7 @@ sorting_label.place(relx=0.2, rely=0.25, relheight=0.5, relwidth=0.3)
 sorting_combobox.place(relx=0.48, rely = 0.25, relheight=0.5, relwidth=0.28)
 sorting_start_button.place(relx=0.8, rely=0.25, relheight=0.5, relwidth=0.18)
 element_quantity_scale.place(relx=0.02, rely=0, relheight=0.48, relwidth=0.177)
-
-
 output_canvas.place(relx = 0.05, rely = 0.3,  relwidth=0.9, relheight=0.65)
-
 
 Em = ElementsManager(output_canvas)
 window.mainloop()
