@@ -1,11 +1,12 @@
 import numpy as np
+from tkinter import Canvas
 
 from config import *
 
 
 class Element:
     
-    def __init__(self,canvas,posX1,posY1,posX2,value,color):
+    def __init__(self,canvas:Canvas,posX1:int,posY1:int,posX2:int,value:int,color="white"):
         self.value = value
         self.posX1 = posX1
         self.posY1 = posY1
@@ -24,17 +25,17 @@ class Element:
     def get_value(self):
         return self.value
     
-    def set_value(self, value):
+    def set_value(self, value:int):
         self.value = value
 
-    def set_color(self, color):
+    def set_color(self, color:str):
         self.color = color
         self.canvas.itemconfig(self.id, fill=color)
 
 
 class ElementsManager:
     
-    def __init__(self, canvas):
+    def __init__(self, canvas:Canvas):
         self.canvas = canvas
 
     def createElements(self):
@@ -45,6 +46,21 @@ class ElementsManager:
 
         for i in range(SORTING_ELEMENT_AMOUT):
             posX2 = posX1 + ELEMENT_WIDTH
-            posY2 = posY1 - np.random.randint(1, WINDOW_HEIGHT * 0.7)
+            posY2 = posY1 - np.random.randint(1, WINDOW_HEIGHT * 0.65)
             self.arr.append(Element(self.canvas, posX1, posY1, posX2, posY2, 'white'))
             posX1 += ELEMENT_WIDTH
+
+    def bubble_sort(self):
+        for i in range(SORTING_ELEMENT_AMOUT):
+            for j in range(0, SORTING_ELEMENT_AMOUT-i-1):
+                if self.arr[j+1].get_value() > self.arr[j].get_value():
+                    Element.swapElementValue(self.arr[j+1], self.arr[j])
+                self.arr[j+1].set_color("white")
+                self.arr[j].set_color("red")
+                self.canvas.update()
+      
+        for i in range(SORTING_ELEMENT_AMOUT):
+            self.arr[i].set_color("green")
+            self.canvas.update()
+            # time.sleep(0.001)
+        
