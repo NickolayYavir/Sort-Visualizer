@@ -51,6 +51,12 @@ class ElementsManager:
             self.arr.append(Element(self.canvas, posX1, posY1, posX2, posY2, 'white'))
             posX1 += ELEMENT_WIDTH
 
+    def __paint_sorted(self, color):
+        for i in range(SORTING_ELEMENT_AMOUT):
+            self.arr[i].set_color("green")
+            self.canvas.update()
+            # time.sleep(0.001)
+
     def bubble_sort(self):
         for i in range(SORTING_ELEMENT_AMOUT):
             for j in range(0, SORTING_ELEMENT_AMOUT-i-1):
@@ -59,9 +65,8 @@ class ElementsManager:
                 self.arr[j+1].set_color("white")
                 self.arr[j].set_color("red")
                 self.canvas.update()
+        
+        self.__paint_sorted("green")
       
-        for i in range(SORTING_ELEMENT_AMOUT):
-            self.arr[i].set_color("green")
-            self.canvas.update()
-            # time.sleep(0.001)
+        
         
