@@ -17,18 +17,18 @@ def start_sorting():
 
 window = Tk()
 window.title("Sorting visualizer")
-window['bg'] = "#18122B"
+window['bg'] = COLOR_DARK_1 
 window.geometry(f'{WINDOW_WIDTH}x{WINDOW_HEIGHT}')
 window.resizable(width=False, height=False)
 
-ui_frame = LabelFrame(window, text="UI", bg='#18122B', fg='#635985')
-element_shuffle_button = Button(ui_frame, text="Shuffle", font=40, bg='#393053', fg="#635985", command=shuffle_elements)
-sorting_label = Label(ui_frame, text="Choose sorting algorithm:", font=36, bg="#18122B", fg="#635985")
+ui_frame = LabelFrame(window, text="UI", bg=COLOR_DARK_1 , fg=COLOR_LIGHT_2)
+element_shuffle_button = Button(ui_frame, text="Shuffle", font=40, bg=COLOR_DARK_2, fg=COLOR_LIGHT_2, command=shuffle_elements)
+sorting_label = Label(ui_frame, text="Choose sorting algorithm:", font=36, bg=COLOR_DARK_1 , fg=COLOR_LIGHT_2)
 style= ttk.Style()
 style.theme_use('clam')
-style.configure("TCombobox", fieldbackground= "#635985", background= "#393053")
+style.configure("TCombobox", fieldbackground=COLOR_LIGHT_2, background= COLOR_DARK_2)
 sorting_combobox = ttk.Combobox(ui_frame, values=["Bubble sort"])
-sorting_start_button = Button(ui_frame, text="Start", font=40, bg='#393053', fg='#635985', command=start_sorting)
+sorting_start_button = Button(ui_frame, text="Start", font=40, bg=COLOR_DARK_2, fg=COLOR_LIGHT_2, command=start_sorting)
 output_canvas = Canvas(window, bg='black')
 
 ui_frame.place(relx = 0.05, rely = 0.05,  relwidth=0.9, relheight=0.15)
