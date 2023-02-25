@@ -85,6 +85,7 @@ class ElementsManager:
                 if not self.isSorting: break
                 self.arr[j+1].set_color('red')
                 if self.arr[j+1].get_value() > self.arr[j].get_value():
+                    self.arr[j].set_color('orange')
                     Element.swapElementValue(self.arr[j+1], self.arr[j])
                 self.canvas.update()
                 if self.SORTING_DELAY > 0: time.sleep(self.SORTING_DELAY)
@@ -99,13 +100,33 @@ class ElementsManager:
                 while j > 0 and self.arr[j-1].get_value() < self.arr[j].get_value():
                     if not self.isSorting : break
                     self.arr[j-1].set_color('red')
+                    self.arr[j].set_color('orange')
                     Element.swapElementValue(self.arr[j], self.arr[j-1])
                     self.canvas.update()
                     if self.SORTING_DELAY > 0: time.sleep(self.SORTING_DELAY)
-                    self.arr[j].set_color('white')
                     self.arr[j-1].set_color('white')
+                    self.arr[j].set_color('white')
                     j -= 1
 
             self.__paint_sorted("green")
+
+    def selection_sort(self):
+        for i in range(self.ELEMENT_AMOUT - 1):
+            if not self.isSorting : break
+            self.arr[i].set_color("red")
+            minpos = i
+            for j in range(i+1, self.ELEMENT_AMOUT):
+                if not self.isSorting : break
+                self.arr[j].set_color("orange")
+                if self.SORTING_DELAY > 0: time.sleep(self.SORTING_DELAY)
+                if self.arr[j].get_value() > self.arr[minpos].get_value():
+                    minpos = j
+                self.canvas.update()
+                self.arr[j].set_color("white")
+  
+            Element.swapElementValue(self.arr[i], self.arr[minpos])
+            self.arr[i].set_color('white')
+
+        self.__paint_sorted("green")
         
         
