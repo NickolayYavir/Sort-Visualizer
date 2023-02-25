@@ -8,24 +8,32 @@ from sort import Sort
 
 def shuffle_elements():
     Em.set_element_quantity(element_quantity_scale.get())
-    sorting_start_button["state"] = "normal"
-    sorting_start_button["bg"] = COLOR_DARK_2
+    sorting_start_button.configure(text="Start", state='normal', bg=COLOR_DARK_2)
     Em.createElements()
+
+def stop_sorting():
+    Em.change_sorting_state()
+    sorting_start_button.configure(text="Start", command=start_sorting, state='disabled', bg=COLOR_LIGHT_1)
+
 
 def start_sorting():
     Em.set_sotring_delay(sorting_delay_scale.get())
     sorting_algorithm = sorting_combobox.get()
     if sorting_algorithm:
+        Em.change_sorting_state()
         element_quantity_scale['state'] = 'disabled'
+        sorting_delay_scale['state'] = 'disabled'
         element_shuffle_button["state"] = "disabled"
-        sorting_start_button["state"] = "disabled"
+        sorting_start_button.configure(text="Stop", command=stop_sorting) 
         element_shuffle_button["bg"] = COLOR_LIGHT_1
         sorting_start_button["bg"] = COLOR_LIGHT_1
         if sorting_algorithm == Sort.BUBBLE_SORT.value: Em.bubble_sort()
         if sorting_algorithm == Sort.INSERTION_SORT.value: Em.insertion_sort()
+        sorting_start_button.configure(text="Start", command=start_sorting, state='disabled', bg=COLOR_LIGHT_1)
         element_quantity_scale['state'] = 'active'
-        element_shuffle_button["state"] = "normal"
-        element_shuffle_button["bg"] = COLOR_DARK_2
+        sorting_delay_scale['state'] = 'active'
+        element_shuffle_button.config(state='normal', bg=COLOR_DARK_2)
+
     
 
 window = Tk()

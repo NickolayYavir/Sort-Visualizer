@@ -43,7 +43,12 @@ class ElementsManager:
         self.ELEMENT_AMOUT = 50
         self.ELEMENT_WIDTH = WINDOW_WIDTH/self.ELEMENT_AMOUT * 0.9
         self.SORTING_DELAY = 0
+        self.isSorting = False
         self.createElements()
+
+    def change_sorting_state(self):
+        if self.isSorting == False: self.isSorting = True
+        else : self.isSorting = False
 
     def set_element_quantity(self, quantity:int):
         if quantity < 1 : raise ValueError("Wrong argument set_element_quantity()")
@@ -67,14 +72,17 @@ class ElementsManager:
             posX1 += self.ELEMENT_WIDTH
 
     def __paint_sorted(self, color):
-        for i in range(self.ELEMENT_AMOUT):
-            self.arr[i].set_color(color)
-            self.canvas.update()
+        if self.isSorting:
+            for i in range(self.ELEMENT_AMOUT):
+                self.arr[i].set_color(color)
+                self.canvas.update()
+            self.change_sorting_state()
 
 
     def bubble_sort(self):
         for i in range(self.ELEMENT_AMOUT):
             for j in range(0, self.ELEMENT_AMOUT-i-1):
+                if not self.isSorting: break
                 self.arr[j+1].set_color('red')
                 if self.arr[j+1].get_value() > self.arr[j].get_value():
                     Element.swapElementValue(self.arr[j+1], self.arr[j])
@@ -89,6 +97,7 @@ class ElementsManager:
             for i in range(1, self.ELEMENT_AMOUT):
                 j = i
                 while j > 0 and self.arr[j-1].get_value() < self.arr[j].get_value():
+                    if not self.isSorting : break
                     self.arr[j-1].set_color('red')
                     Element.swapElementValue(self.arr[j], self.arr[j-1])
                     self.canvas.update()
