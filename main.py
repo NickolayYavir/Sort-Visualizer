@@ -32,6 +32,7 @@ def start_sorting():
         if sorting_algorithm == Sort.BUBBLE_SORT.value: Em.bubble_sort()
         if sorting_algorithm == Sort.INSERTION_SORT.value: Em.insertion_sort()
         if sorting_algorithm == Sort.SELECTION_SORT.value: Em.selection_sort()
+        if sorting_algorithm == Sort.QUIK_SORT.value: Em.quick_sort()
         sorting_start_button.configure(text="Start", command=start_sorting, state='disabled', bg=COLOR_LIGHT_1)
         element_quantity_scale['state'] = 'normal'
         element_shuffle_button.config(state='normal', bg=COLOR_DARK_2)
