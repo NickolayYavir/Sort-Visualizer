@@ -1,7 +1,6 @@
+import random
 import time
 from tkinter import Canvas
-
-import numpy as np
 
 from config import *
 
@@ -70,7 +69,7 @@ class ElementsManager:
 
         for i in range(self.ELEMENT_AMOUT):
             posX2 = posX1 + self.ELEMENT_WIDTH
-            posY2 = posY1 - np.random.randint(1, WINDOW_HEIGHT * 0.65)
+            posY2 = posY1 - random.randint(1, WINDOW_HEIGHT * 0.65)
             self.arr.append(Element(self.canvas, posX1, posY1, posX2, posY2, 'white'))
             posX1 += self.ELEMENT_WIDTH
 
